@@ -15,15 +15,19 @@ const allowedOrigins = [
   'http://localhost:3000'
 ].filter(Boolean)
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) return callback(null, true)
-      callback(new Error('Not allowed by CORS'))
-    },
-    credentials: true
-  })
-)
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true)
+    callback(new Error('Not allowed by CORS'))
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}
+
+// Handle OPTIONS preflight for all routes
+app.options('*', cors(corsOptions))
+app.use(cors(corsOptions))
 app.use(express.json())
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }))
