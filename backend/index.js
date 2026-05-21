@@ -28,12 +28,6 @@ app.use(express.json())
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }))
 
-app.get('/debug-auth', (_req, res) => {
-  res.json({
-    adminPasswordSet: !!process.env.ADMIN_PASSWORD,
-    adminPasswordLength: process.env.ADMIN_PASSWORD?.length ?? 0
-  })
-})
 
 app.use('/api/campus', campusRoutes)
 app.use('/api/register', registerRoutes)
