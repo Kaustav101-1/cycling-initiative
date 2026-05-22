@@ -3,7 +3,7 @@ const router = express.Router()
 const supabase = require('../lib/supabase')
 const adminAuth = require('../middleware/adminAuth')
 
-const CAMPUSES = ['iim-calcutta', 'nit-trichy', 'bits-pilani']
+const CAMPUSES = ['iim-calcutta', 'nit-rourkela', 'bit-mesra', 'bit-sindri']
 
 router.get('/analytics', adminAuth, async (req, res) => {
   const [viewsRes, interestsRes, regsRes] = await Promise.all([

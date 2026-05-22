@@ -4,8 +4,9 @@ import api from '../api/client'
 
 const CAMPUS_NAMES = {
   'iim-calcutta': 'IIM Calcutta',
-  'nit-trichy': 'NIT Trichy',
-  'bits-pilani': 'BITS Pilani'
+  'nit-rourkela': 'NIT Rourkela',
+  'bit-mesra':    'BIT Mesra',
+  'bit-sindri':   'BIT Sindri'
 }
 
 export default function Register() {
@@ -13,7 +14,7 @@ export default function Register() {
   const navigate = useNavigate()
   const campusName = CAMPUS_NAMES[campusId] || campusId
 
-  const [form, setForm] = useState({ name: '', batch: '' })
+  const [form, setForm] = useState({ name: '', email: '', batch: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -22,7 +23,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.name.trim() || !form.batch.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.batch.trim()) {
       setError('Please fill in all fields.')
       return
     }
@@ -38,19 +39,23 @@ export default function Register() {
     }
   }
 
+  const inputClass = "w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition"
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12" style={{ backgroundColor: '#F6F5F2' }}>
       <div className="w-full max-w-md">
         <div className="bg-white rounded-3xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <div className="text-5xl mb-3">🚴</div>
-            <h1 className="text-2xl font-bold text-gray-800">Join the Initiative</h1>
-            <p className="text-gray-400 mt-1 text-sm">{campusName}</p>
+            <div className="flex justify-center mb-3">
+              <img src="/images/logo.png" alt="PedalUp" className="h-20 w-auto object-contain" />
+            </div>
+            <h1 className="text-2xl font-bold" style={{ color: '#1D3215' }}>Get Early Access</h1>
+            <p className="mt-1 text-sm font-medium" style={{ color: '#8F8E7F' }}>{campusName}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-semibold mb-1" style={{ color: '#1D3215' }}>
                 Full Name
               </label>
               <input
@@ -59,13 +64,29 @@ export default function Register() {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Enter your full name"
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                className={inputClass}
+                style={{ '--tw-ring-color': '#487531' }}
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-semibold mb-1" style={{ color: '#1D3215' }}>
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="your@email.com"
+                className={inputClass}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold mb-1" style={{ color: '#1D3215' }}>
                 Batch / Year
               </label>
               <input
@@ -74,7 +95,7 @@ export default function Register() {
                 value={form.batch}
                 onChange={handleChange}
                 placeholder="e.g. 2023–2025 or 3rd Year CSE"
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                className={inputClass}
                 required
               />
             </div>
@@ -86,15 +107,17 @@ export default function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-semibold py-3 rounded-xl shadow transition-colors text-base"
+              className="w-full text-white font-bold py-3 rounded-xl shadow transition-all text-base hover:opacity-90 disabled:opacity-50"
+              style={{ backgroundColor: '#487531' }}
             >
-              {loading ? 'Registering…' : 'Register Now'}
+              {loading ? 'Submitting…' : 'Get Early Access'}
             </button>
           </form>
 
           <button
             onClick={() => navigate(`/campus/${campusId}`)}
-            className="mt-5 w-full text-center text-gray-400 hover:text-gray-600 text-sm transition-colors"
+            className="mt-5 w-full text-center text-sm transition-colors hover:opacity-70"
+            style={{ color: '#8F8E7F' }}
           >
             ← Back to campus page
           </button>

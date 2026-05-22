@@ -3,8 +3,9 @@ import api from '../api/client'
 
 const CAMPUS_LABELS = {
   'iim-calcutta': 'IIM Calcutta',
-  'nit-trichy': 'NIT Trichy',
-  'bits-pilani': 'BITS Pilani'
+  'nit-rourkela': 'NIT Rourkela',
+  'bit-mesra':    'BIT Mesra',
+  'bit-sindri':   'BIT Sindri'
 }
 
 function StatCard({ label, value }) {

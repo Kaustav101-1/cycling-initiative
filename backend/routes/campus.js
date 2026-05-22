@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const supabase = require('../lib/supabase')
 
-const VALID_CAMPUSES = ['iim-calcutta', 'nit-trichy', 'bits-pilani']
+const VALID_CAMPUSES = ['iim-calcutta', 'nit-rourkela', 'bit-mesra', 'bit-sindri']
 
 router.post('/view', async (req, res) => {
   const { campus } = req.body
