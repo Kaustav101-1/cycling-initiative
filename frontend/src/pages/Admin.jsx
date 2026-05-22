@@ -171,7 +171,7 @@ export default function Admin() {
               <table className="w-full text-sm">
                 <thead className="bg-gray-50">
                   <tr>
-                    {['Name', 'Batch', 'Campus', 'Registered At'].map((h) => (
+                    {['Name', 'Email', 'Batch', 'Campus', 'Registered At'].map((h) => (
                       <th key={h} className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         {h}
                       </th>
@@ -182,6 +182,7 @@ export default function Admin() {
                   {registrations.map((reg) => (
                     <tr key={reg.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 font-medium text-gray-800">{reg.name}</td>
+                      <td className="px-6 py-4 text-gray-600">{reg.email || '—'}</td>
                       <td className="px-6 py-4 text-gray-600">{reg.batch}</td>
                       <td className="px-6 py-4 text-gray-600">
                         {CAMPUS_LABELS[reg.campus] || reg.campus}
