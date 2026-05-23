@@ -5,7 +5,7 @@ import axios from 'axios'
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || '',
   headers: { 'Content-Type': 'application/json' },
-  timeout: 30000 // 30 seconds — handles Railway cold start
+  timeout: 60000 // 60 seconds — handles Railway cold start
 })
 
 export default api
